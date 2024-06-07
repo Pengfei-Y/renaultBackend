@@ -7,11 +7,11 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Participant {
+public class Doctor {
     @Id
-    private String participantId;
+    private String ClinicianId;
     @NotEmpty(message = "username cannot be empty")
     private String username;
-    @NotEmpty(message = "device ID cannot be empty")
-    private String deviceUuid;
+    @NotEmpty(message = "password cannot be empty")
+    private String password;
 }

@@ -15,12 +15,12 @@ import java.util.Date;
 public class Attack {
     @Id
     private String attackId;
-    @NotEmpty(message = "Participant cannot be null")
+    @NotEmpty(message = "participant cannot be empty")
     private String participantId;
-    @NotNull(message = "time cannot be null")
+    @NotNull(message = "data cannot be empty")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date attackDate;
-    @NotEmpty(message = "location cannot be null")
+    @NotEmpty(message = "location cannot be empty")
     private String location;
 }

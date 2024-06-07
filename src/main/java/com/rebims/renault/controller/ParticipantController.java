@@ -27,7 +27,7 @@ public class ParticipantController {
     @GetMapping("/findByDevice")
     public Result<Participant> findParticipant(@RequestBody Participant participant) {
         if (participant.getDeviceUuid() == null || "".equals(participant.getDeviceUuid())) {
-            throw new RenaultException("Device uuid cannot be null");
+            throw new RenaultException("设备编号不能为空");
         }
         Participant find = participantService.findParticipantByDeviceId(participant.getDeviceUuid());
         return ResultUtil.success(find);

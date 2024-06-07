@@ -11,7 +11,9 @@ public class CorsConfig {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration conf = new CorsConfiguration();
+        // allow all http headers
         conf.addAllowedHeader("*");
+        // allow all http methods: Post, Get, Put...
         conf.addAllowedMethod("*");
         //conf.addAllowedOrigin("*");
         conf.addAllowedOriginPattern("*");
@@ -25,7 +27,7 @@ public class CorsConfig {
         conf.addExposedHeader("access-control-max-age");
         conf.addExposedHeader("X-Frame-Options");
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", conf);
+        source.registerCorsConfiguration("/**", conf); // Configuring cross-domain
         return new CorsFilter(source);
     }
 }

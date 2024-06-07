@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface AttackRepository extends JpaRepository<Attack, String> {
     List<Attack> findAttacksByParticipantIdAndAttackDateBetweenOrderByAttackDateDesc(String participantId, Date startDay, Date endDay);
+    List<Attack> findAttacksByParticipantIdOrderByAttackDateDesc(String participantId);
 }

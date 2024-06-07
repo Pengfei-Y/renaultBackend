@@ -3,6 +3,7 @@ package com.rebims.renault.service;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.StrUtil;
 import com.rebims.renault.dto.AttackDTO;
 import com.rebims.renault.entity.Attack;
 import com.rebims.renault.exception.RenaultException;
@@ -37,7 +38,7 @@ public class AttackService {
         DateTime endOfDay = DateUtil.offsetDay(baseDay, 1);
         List<Attack> attackList = attackRepository.findAttacksByParticipantIdAndAttackDateBetweenOrderByAttackDateDesc(attack.getParticipantId(), startOfDay, endOfDay);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        // 处理Map
+        // deal with Map
         Map<String, Integer> result = new TreeMap<>();
         for (int i = 1; i <= 6; i++) {
             DateTime key = DateUtil.offsetDay(baseDay, -i);
@@ -60,5 +61,13 @@ public class AttackService {
         BeanUtil.copyProperties(attack, find);
         Attack edit = attackRepository.save(find);
         return edit;
+    }
+
+    public List<Attack> findByParticipantId(String participantId) {
+        if (StrUtil.isEmpty(participantId)) {
+            throw new RenaultException("participant cannot be null");
+        }
+        List<Attack> attackList = attackRepository.findAttacksByParticipantIdOrderByAttackDateDesc(participantId);
+        return attackList;
     }
 }

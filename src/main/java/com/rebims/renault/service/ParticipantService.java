@@ -5,6 +5,7 @@ import com.rebims.renault.repository.ParticipantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -21,5 +22,9 @@ public class ParticipantService {
     public Participant findParticipantByDeviceId(String deviceUuid) {
         Participant participant = repository.findParticipantByDeviceUuid(deviceUuid);
         return participant;
+    }
+    public List<Participant> findAllParticipant() {
+        List<Participant> participantList = repository.findAll();
+        return participantList;
     }
 }
